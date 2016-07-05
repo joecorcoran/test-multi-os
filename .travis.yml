@@ -1,0 +1,23 @@
+language: rust
+sudo: required
+os:
+  - linux
+  - osx
+rust:
+- stable
+- nightly
+matrix:
+  include:
+    - rust: stable
+      env: TRAVIS_RUST_VERSION=stable FEATURE=with-syntex
+    - rust: nightly
+      env: FEATURE=nightly
+  allow_failures:
+    - os: osx
+script: echo hi
+env:
+  global:
+    - TRAVIS_CARGO_NIGHTLY_FEATURE=""
+    - secure: abc123
+  matrix:
+    - FEATURE=with-syntex
